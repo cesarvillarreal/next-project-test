@@ -1,7 +1,11 @@
 import {NextResponse} from 'next/server';
+import type {NextRequest} from 'next/server';
+export const middleware = (request: NextRequest) => {
+  if( request.nextUrl.pathname.startsWith('/todos')) {
+    return NextResponse.rewrite(new URL('/todos', request.url))
+  }
 
-export const middleware = (request) => {
-  return NextResponse.redirect(new URL('/', request.url))
+  // return NextResponse.redirect(new URL('/', request.url))
 }
 
 export default middleware;
